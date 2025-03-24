@@ -1,0 +1,14 @@
+/* I know this css is bad, but idc cause I'm doing backend */
+body {
+  background-color: rgb(37, 37, 37);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.8px;
+  padding: 20px;
+  color: white;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: pink;
+}

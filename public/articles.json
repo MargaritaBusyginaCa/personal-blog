@@ -1,0 +1,10 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "My article",
+      "body": "My first article about express.js",
+      "publishDate": "2025-03-24"
+    }
+  ]
+}
