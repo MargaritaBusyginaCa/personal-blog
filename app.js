@@ -19,14 +19,25 @@ app.get("/(home)?", (req, res) => {
   res.render("index", articles);
 });
 
-app.get("/article/:articleId", (req, res) => {
-  const articleId = parseInt(req.params.articleId);
+app.get("/article/:slug", (req, res) => {
+  // const articleId = parseInt(req.params.articleId);
+  const slug = req.params.slug;
+  const article = findRequestedArticle(slug);
+
   res.render("article", {
-    articleId: articleId,
-    articles: articles.articles,
+    slug: slug,
+    article: article,
   });
 });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+function findRequestedArticle(slug) {
+  for (let i = 0; i < articles.articles.length; i++) {
+    if (slug === articles.articles[i].slug) {
+      return articles.articles[i];
+    }
+  }
+}
