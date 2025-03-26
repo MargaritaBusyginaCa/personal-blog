@@ -23,11 +23,18 @@ app.get("/article/:slug", (req, res) => {
   // const articleId = parseInt(req.params.articleId);
   const slug = req.params.slug;
   const article = findRequestedArticle(slug);
+  if (article) {
+    res.render("article", {
+      slug: slug,
+      article: article,
+    });
+  } else {
+    res.render("404");
+  }
+});
 
-  res.render("article", {
-    slug: slug,
-    article: article,
-  });
+app.get("*", function (req, res) {
+  res.status(404).render("404");
 });
 
 app.listen(port, () => {
