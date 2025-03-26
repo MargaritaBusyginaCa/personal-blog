@@ -1,0 +1,14 @@
+
+doctype html
+html
+    head
+        title Home Page
+        link(rel='stylesheet', type='text/css', href='/css/style.css')
+    body
+        h1 Welcome to my personal blog
+    ul
+     each article in articles
+      li
+       a(href=`/article/${article.id}`) #{article.title} - #{article.publishDate}
+
+
