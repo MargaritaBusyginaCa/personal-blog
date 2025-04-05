@@ -25,7 +25,7 @@ router.get("/article/:slug", (req, res) => {
 });
 
 router.get("/admin", authentication, (req, res) => {
-  res.send("this route uses authentication middleware");
+  res.render("admin-dashboard", articles);
 });
 
 router.get("*", function (req, res) {

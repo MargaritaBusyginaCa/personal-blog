@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title Admin Dashboard
+        link(rel='stylesheet', type='text/css', href='/css/style.css')
+    body
+        h1 Welcome to the admin dashboard
+    ul
+     each article in articles
+      li #{article.title} 
+      a(href=`/edit/${article.slug}`) Edit 
+      form(method="post" action=`/delete/${article.slug}`)
+            button(type="submit") Delete
