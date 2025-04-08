@@ -31,7 +31,6 @@ router.get("/admin", authentication, (req, res) => {
 router.get("/admin/edit/:slug", authentication, (req, res) => {
   const slug = req.params.slug;
   const article = findRequestedArticle(slug);
-  console.log(article);
   res.render("edit-article", article);
 });
 
@@ -39,7 +38,25 @@ router.get("*", function (req, res) {
   res.status(404).render("404");
 });
 
-router.post("/admin/save", authentication, (req, res) => {});
+router.post("/admin/save", authentication, (req, res) => {
+  const { title, slug, body } = req.body;
+
+  const index = articles.articles.findIndex((el) => el.slug === slug);
+
+  //if the article wasn't found:
+  if (index === -1) {
+    res.status("404").render("404");
+  }
+
+  articles.articles[index].title = title;
+  articles.articles[index].body = body;
+  const newSlug = title.toLowerCase().replace(/\s+/g, "-");
+  articles.articles[index].slug = newSlug;
+
+  fs.writeFileSync(jsonPath, JSON.stringify(articles));
+
+  res.redirect(`/article/${newSlug}`);
+});
 
 function findRequestedArticle(slug) {
   for (let i = 0; i < articles.articles.length; i++) {

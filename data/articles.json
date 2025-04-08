@@ -2,17 +2,20 @@
   "articles": [
     {
       "id": 1,
-      "slug": "my-article",
-      "title": "My article",
+      "slug": "my-first-article",
+      "title": "My first article",
       "body": "My first article about express.js",
-      "publishDate": "2025-03-24"
+      "publishDate": "2025-03-24",
+      "_locals": {}
     },
     {
       "id": 1,
-      "slug": "my-article-2",
+      "slug": "my-second-article",
       "title": "My second article",
-      "body": "My second article about express.js",
-      "publishDate": "2025-03-26"
+      "body": "My second article about express.js hey",
+      "publishDate": "2025-03-26",
+      "_locals": {}
     }
-  ]
+  ],
+  "_locals": {}
 }
