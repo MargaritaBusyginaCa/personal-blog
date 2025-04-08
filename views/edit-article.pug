@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title Admin Dashboard
+        link(rel='stylesheet', type='text/css', href='/css/style.css')
+    body
+
+p #{article}    
+form(action="/admin/save" method="POST")
+  input(type="hidden", name="slug", value=slug)
+  label(for="title") Title:
+  input(type="text", id="title", name="title" value=title)
+  br
+  br
+  label(for="body") Body:
+  input(type="text", id="body", name="body" value=body)
+  br
+  br
+  input(type="submit", value="Save")

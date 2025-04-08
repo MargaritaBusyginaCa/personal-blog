@@ -3,7 +3,7 @@ body {
   background-color: rgb(37, 37, 37);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 0.8px;
-  padding: 20px;
+  padding: 30px;
   color: white;
 }
 a {
@@ -11,4 +11,33 @@ a {
 }
 a:hover {
   color: pink;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ul {
+  padding: 0;
+}
+li {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  background-color: white;
+  border-radius: 2px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 12px 28px;
+}
+.modify-buttons-group {
+  display: flex;
+  gap: 25px;
 }

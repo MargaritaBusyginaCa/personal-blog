@@ -28,9 +28,18 @@ router.get("/admin", authentication, (req, res) => {
   res.render("admin-dashboard", articles);
 });
 
+router.get("/admin/edit/:slug", authentication, (req, res) => {
+  const slug = req.params.slug;
+  const article = findRequestedArticle(slug);
+  console.log(article);
+  res.render("edit-article", article);
+});
+
 router.get("*", function (req, res) {
   res.status(404).render("404");
 });
+
+router.post("/admin/save", authentication, (req, res) => {});
 
 function findRequestedArticle(slug) {
   for (let i = 0; i < articles.articles.length; i++) {
