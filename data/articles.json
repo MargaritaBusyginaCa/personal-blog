@@ -15,6 +15,13 @@
       "body": "Hi, this is an article about my fav food",
       "publishDate": "2025-03-24",
       "_locals": {}
+    },
+    {
+      "id": 5,
+      "slug": "article-about-hobbies",
+      "title": "article about hobbies",
+      "body": "My fav hobbies",
+      "date": "2025-04-13T18:51:35.084Z"
     }
   ],
   "_locals": {}

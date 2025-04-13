@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title New Article
+        link(rel='stylesheet', type='text/css', href='/css/style.css')
+    body
+   
+form(action="/admin/create" method="POST")
+  label(for="title") Title:
+  input(type="text", id="title", name="title")
+  br
+  br
+  label(for="body") Body:
+  input(type="text", id="body", name="body")
+  br
+  br
+  input(type="submit", value="Save")

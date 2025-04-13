@@ -34,10 +34,6 @@ router.get("/admin/edit/:slug", authentication, (req, res) => {
   res.render("edit-article", article);
 });
 
-router.get("*", function (req, res) {
-  res.status(404).render("404");
-});
-
 router.post("/admin/save", authentication, (req, res) => {
   const { title, slug, body } = req.body;
 
@@ -68,6 +64,26 @@ router.post("/admin/delete/:slug", authentication, (req, res) => {
   res.redirect(`/admin`);
 });
 
+router.get("/admin/create", authentication, (req, res) => {
+  console.log("hi");
+  res.render("create-article");
+});
+router.post("/admin/create", authentication, (req, res) => {
+  const { title, body } = req.body;
+
+  const newSlug = title.toLowerCase().replace(/\s+/g, "-");
+  const newArticle = {
+    id: articles.articles.length + 1,
+    slug: newSlug,
+    title: title,
+    body: body,
+    date: new Date(),
+  };
+  articles.articles.push(newArticle);
+  fs.writeFileSync(jsonPath, JSON.stringify(articles));
+  res.redirect(`/admin`);
+});
+
 function findRequestedArticle(slug) {
   for (let i = 0; i < articles.articles.length; i++) {
     if (slug === articles.articles[i].slug) {
@@ -75,5 +91,9 @@ function findRequestedArticle(slug) {
     }
   }
 }
+
+router.get("*", function (req, res) {
+  res.status(404).render("404");
+});
 
 export default router;
