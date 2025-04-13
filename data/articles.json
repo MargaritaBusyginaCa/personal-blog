@@ -4,16 +4,16 @@
       "id": 1,
       "slug": "my-first-article",
       "title": "My first article",
-      "body": "My first article about express.js",
+      "body": "This is my first article",
       "publishDate": "2025-03-24",
       "_locals": {}
     },
     {
-      "id": 1,
-      "slug": "my-second-article",
-      "title": "My second article",
-      "body": "My second article about express.js hey",
-      "publishDate": "2025-03-26",
+      "id": 3,
+      "slug": "my-fav-food",
+      "title": "My favorite food",
+      "body": "Hi, this is an article about my fav food",
+      "publishDate": "2025-03-24",
       "_locals": {}
     }
   ],

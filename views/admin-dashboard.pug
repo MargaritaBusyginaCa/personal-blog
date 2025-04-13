@@ -14,5 +14,6 @@ html
        div(class="modify-buttons-group")
         a(href=`/admin/edit/${article.slug}`)
            button Edit
-        form(method="post" action=`/delete/${article.slug}`)
+        form(method="post" action=`/admin/delete/${article.slug}`)
+            input(type="hidden", name="slug", value=article.slug)
             button(type="submit") Delete

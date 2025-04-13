@@ -52,10 +52,20 @@ router.post("/admin/save", authentication, (req, res) => {
   articles.articles[index].body = body;
   const newSlug = title.toLowerCase().replace(/\s+/g, "-");
   articles.articles[index].slug = newSlug;
-
+  articles.articles[index].id = index + 1;
   fs.writeFileSync(jsonPath, JSON.stringify(articles));
 
   res.redirect(`/article/${newSlug}`);
+});
+
+router.post("/admin/delete/:slug", authentication, (req, res) => {
+  const { slug } = req.body;
+
+  const index = articles.articles.findIndex((el) => el.slug === slug);
+  articles.articles.splice(index, 1);
+  //TO-DO: reassign indexes to remaining articles
+  fs.writeFileSync(jsonPath, JSON.stringify(articles));
+  res.redirect(`/admin`);
 });
 
 function findRequestedArticle(slug) {
