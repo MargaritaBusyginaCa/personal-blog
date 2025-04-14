@@ -12,4 +12,4 @@ This project uses:
 
 ---
 
-Created by Margarita as part of the (backend developer map)[https://roadmap.sh/projects/personal-blog]
+Completed by Margarita as part of the [backend developer map](https://roadmap.sh/projects/personal-blog) in April 2025.
