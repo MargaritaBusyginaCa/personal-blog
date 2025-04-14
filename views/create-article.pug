@@ -4,8 +4,8 @@ html
         title New Article
         link(rel='stylesheet', type='text/css', href='/css/style.css')
     body
-   
-form(action="/admin/create" method="POST")
+div(class="form")   
+ form(action="/admin/create" method="POST")
   label(for="title") Title:
   input(type="text", id="title", name="title" class="title-input")
   br

@@ -9,6 +9,10 @@ html
     ul
      each article in articles
       li
-       a(href=`/article/${article.id}`) #{article.title} - #{article.date}
+       
+      div(class="article-list-view")
+       a(href=`/article/${article.id}`) 
+        p #{article.title}  
+       p #{article.date}
 
 

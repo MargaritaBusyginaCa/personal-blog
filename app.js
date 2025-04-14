@@ -2,6 +2,7 @@ import express from "express";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import routes from "./routes/routes.js";
+import "dotenv/config";
 
 const app = express();
 const port = 3000;

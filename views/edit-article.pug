@@ -13,7 +13,7 @@ form(action="/admin/save" method="POST")
   br
   br
   label(for="body") Body:
-  input(type="text", id="body", name="body" value=body)
+  textarea(id="body", name="body" rows="4" cols="50" class="body-input") #{body}
   br
   br
   input(type="submit", value="Save")

@@ -1,5 +1,8 @@
 const authentication = (req, res, next) => {
-  const auth = { login: "example", password: "example" }; //will change later
+  const auth = {
+    login: process.env.ADMIN_NAME,
+    password: process.env.ADMIN_PWD,
+  }; //will change later
 
   // parse login and password from headers
   const b64auth = (req.headers.authorization || "").split(" ")[1] || "";

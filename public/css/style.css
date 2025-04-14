@@ -58,3 +58,7 @@ form > label {
 .title-input {
   padding: 8px 0;
 }
+.article-list-view {
+  display: flex;
+  justify-content: space-between;
+}
