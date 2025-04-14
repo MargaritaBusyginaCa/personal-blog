@@ -41,3 +41,20 @@ button:hover {
   display: flex;
   gap: 25px;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form > input,
+form > textarea {
+  width: 500px;
+}
+form > label {
+  padding: 10px 0;
+}
+.title-input {
+  padding: 8px 0;
+}

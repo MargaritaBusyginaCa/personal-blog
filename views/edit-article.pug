@@ -7,7 +7,7 @@ html
 
 p #{article}    
 form(action="/admin/save" method="POST")
-  input(type="hidden", name="slug", value=slug)
+  input(type="hidden", name="id", value=id)
   label(for="title") Title:
   input(type="text", id="title", name="title" value=title)
   br

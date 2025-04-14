@@ -11,12 +11,12 @@ router.get("/(home)?", (req, res) => {
   res.render("index", articles);
 });
 
-router.get("/article/:slug", (req, res) => {
-  const slug = req.params.slug;
-  const article = findRequestedArticle(slug);
+router.get("/article/:id", (req, res) => {
+  const id = req.params.id;
+  const article = findRequestedArticle(id);
   if (article) {
     res.render("article", {
-      slug: slug,
+      id: id,
       article: article,
     });
   } else {
@@ -28,16 +28,16 @@ router.get("/admin", authentication, (req, res) => {
   res.render("admin-dashboard", articles);
 });
 
-router.get("/admin/edit/:slug", authentication, (req, res) => {
-  const slug = req.params.slug;
-  const article = findRequestedArticle(slug);
+router.get("/admin/edit/:id", authentication, (req, res) => {
+  const id = req.params.id;
+  const article = findRequestedArticle(id);
   res.render("edit-article", article);
 });
 
 router.post("/admin/save", authentication, (req, res) => {
-  const { title, slug, body } = req.body;
+  const { title, id, body } = req.body;
 
-  const index = articles.articles.findIndex((el) => el.slug === slug);
+  const index = articles.articles.findIndex((el) => el.id == id);
 
   //if the article wasn't found:
   if (index === -1) {
@@ -46,50 +46,62 @@ router.post("/admin/save", authentication, (req, res) => {
 
   articles.articles[index].title = title;
   articles.articles[index].body = body;
-  const newSlug = title.toLowerCase().replace(/\s+/g, "-");
-  articles.articles[index].slug = newSlug;
-  articles.articles[index].id = index + 1;
+
   fs.writeFileSync(jsonPath, JSON.stringify(articles));
 
-  res.redirect(`/article/${newSlug}`);
+  res.redirect(`/article/${articles.articles[index].id}`);
 });
 
-router.post("/admin/delete/:slug", authentication, (req, res) => {
-  const { slug } = req.body;
+router.post("/admin/delete/:id", authentication, (req, res) => {
+  const { id } = req.body;
 
-  const index = articles.articles.findIndex((el) => el.slug === slug);
+  const index = articles.articles.findIndex((el) => el.id == id);
   articles.articles.splice(index, 1);
-  //TO-DO: reassign indexes to remaining articles
   fs.writeFileSync(jsonPath, JSON.stringify(articles));
   res.redirect(`/admin`);
 });
 
 router.get("/admin/create", authentication, (req, res) => {
-  console.log("hi");
   res.render("create-article");
 });
+
 router.post("/admin/create", authentication, (req, res) => {
   const { title, body } = req.body;
 
-  const newSlug = title.toLowerCase().replace(/\s+/g, "-");
+  if (!title || !body) {
+    return res.redirect("/admin/create?error=Missing+title+or+body");
+  }
+
   const newArticle = {
-    id: articles.articles.length + 1,
-    slug: newSlug,
+    id: makeId(),
     title: title,
     body: body,
-    date: new Date(),
+    date: new Date().toDateString(),
   };
   articles.articles.push(newArticle);
   fs.writeFileSync(jsonPath, JSON.stringify(articles));
   res.redirect(`/admin`);
 });
 
-function findRequestedArticle(slug) {
+function findRequestedArticle(id) {
   for (let i = 0; i < articles.articles.length; i++) {
-    if (slug === articles.articles[i].slug) {
+    if (id == articles.articles[i].id) {
       return articles.articles[i];
     }
   }
+}
+
+function makeId() {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < 5) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
 }
 
 router.get("*", function (req, res) {
