@@ -52,7 +52,7 @@ router.post("/admin/save", authentication, (req, res) => {
   res.redirect(`/article/${articles.articles[index].id}`);
 });
 
-router.post("/admin/delete/:id", authentication, (req, res) => {
+router.delete("/admin/delete/:id", authentication, (req, res) => {
   const { id } = req.body;
 
   const index = articles.articles.findIndex((el) => el.id == id);

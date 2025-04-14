@@ -14,6 +14,20 @@ html
        div(class="modify-buttons-group")
         a(href=`/admin/edit/${article.id}`)
            button Edit
-        form(method="post" action=`/admin/delete/${article.id}`)
+        form
             input(type="hidden", name="id", value=article.id)
-            button(type="submit") Delete
+            button(type="submit" class="delete-btn"  data-id=article.id) Delete
+
+
+
+script(type="text/javascript").
+  const deleteButtons = document.querySelectorAll(".delete-btn");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const id = e.target.dataset.id;
+      fetch(`/admin/delete/${id}`, {
+        method: "DELETE",
+      })
+    });
+  });
+  
